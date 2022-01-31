@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import { Routes, Route, Link } from 'react-router-dom'
+import { Home } from "./homes/Home";
+import { SeasonList } from "./seasons/SeasonList";
+import { ShowEpisode } from "./episodes/ShowEpisode";
+import { EpisodeList } from "./episodes/EpisodeList";
 // import "../App.css";
 
 export const App = () => {
@@ -7,6 +12,13 @@ export const App = () => {
     <>
       <h1>Appコンポーネントに来ました。</h1>
       <p></p>
+
+      <Routes>
+        <Route path="/" element={<Home/> } />
+        <Route path="/seasons" element={<SeasonList/> } />
+        <Route path="/seasons/:id/episodes" element={<EpisodeList/> } />
+        <Route path="/seasons/:season_id/episodes/:id" element={<ShowEpisode/> } />
+      </Routes>
     </>
   )
 }
