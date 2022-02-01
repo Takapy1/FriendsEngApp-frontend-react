@@ -1,23 +1,11 @@
 import React, { Component, useEffect, useState } from "react";
 import axios from 'axios'
 import { Link, useParams } from "react-router-dom";
+import { NUM_EACH_EPISODE } from "../../constans/episodes";
 
 export const EpisodeList = () => {
-  const [numEpisodes, setNumEpisodes] = useState();
-  const [links, setLinks] = useState([]);
   const seasonId = useParams().id;
-
-  useEffect( () => {
-    axios.get(process.env.REACT_APP_SERVER_URL + `/api/v1/seasons/${seasonId}/episodes`)
-    .then(res => {
-      console.log(res.data.data.length);
-      setNumEpisodes(res.data.data.length);
-      setLinks([...Array(numEpisodes).keys()]);
-    })
-    .catch(e => {
-      console.log(e);
-    });
-  }, [])
+  const links = [...Array(NUM_EACH_EPISODE[seasonId]).keys()].map(i => ++i)
 
   return (
     <>
@@ -25,8 +13,8 @@ export const EpisodeList = () => {
       <div>
         {links.map(val => {
           return(
-            <div>
-              <Link to={`/seasons/1/episodes/${val+1}`}>Episode {val + 1}</Link>
+            <div key={`episode${val}`}>
+              <Link to={`/seasons/${seasonId}/episodes/${val}`}>Episode {val}</Link>
             </div> 
           )
         })}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export const SeasonList = () => { 
-
+  
   return (
     <>
       <p>season list page</p>
