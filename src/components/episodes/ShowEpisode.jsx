@@ -1,14 +1,23 @@
 import axios from "axios";
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export const ShowEpisode = () => { 
-  console.log(useParams.id);
-  // const seasonId = useParams().id;
+  const seasonId = useParams().seasonId;
+  const episodeId = useParams().id;
 
-  // useEffect( () => {
-  //   axios.get(process.env.REACT_APP_SERVER_URL + `/api/v1/seasons/${seasonId}/episodes/${episodeId}`)
-  // })
+  const [lines, setLines] = useState([]);
+
+  useEffect( async() => {
+    await axios.get(process.env.REACT_APP_SERVER_URL + `/api/v1/seasons/${seasonId}/episodes/${episodeId}`)
+    .then(res => {
+      setLines(res.data.data);
+      console.log(lines);
+    })
+    .catch(e => {
+      console.log(e);
+    })
+  }, []);
 
   // const getLines () => {
 
@@ -17,6 +26,11 @@ export const ShowEpisode = () => {
   return (
     <>
       <p>show episode page</p>
+      <div>
+        {lines.map((val, _) => (
+          <p>{val.content}</p>
+        ))}
+      </div>
     </>
   )
 }
