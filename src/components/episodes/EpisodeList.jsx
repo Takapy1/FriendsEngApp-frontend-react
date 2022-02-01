@@ -6,7 +6,6 @@ export const EpisodeList = () => {
   const [numEpisodes, setNumEpisodes] = useState();
   const [links, setLinks] = useState([]);
   const seasonId = useParams().id;
-  console.log(useParams);
 
   useEffect( () => {
     axios.get(process.env.REACT_APP_SERVER_URL + `/api/v1/seasons/${seasonId}/episodes`)
