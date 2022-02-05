@@ -4,6 +4,7 @@ import { Home } from "./homes/Home";
 import { SeasonList } from "./seasons/SeasonList";
 import { ShowEpisode } from "./episodes/ShowEpisode";
 import { EpisodeList } from "./episodes/EpisodeList";
+import { Header } from './Header/Header'
 import axios from "axios";
 // import "../App.css";
 
@@ -11,6 +12,7 @@ export const App = () => {
 
   return (
     <>
+      <Header />
       <h1>Appコンポーネントに来ました。</h1>
       <p></p>
 
