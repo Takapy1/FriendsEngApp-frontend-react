@@ -11,7 +11,7 @@ export const ShowEpisode = () => {
   useEffect( async() => {
     await axios.get(process.env.REACT_APP_SERVER_URL + `/api/v1/seasons/${seasonId}/episodes/${episodeId}`)
     .then(res => {
-      setLines(res.data.data);
+      setLines(res.data);
       console.log(lines);
     })
     .catch(e => {
@@ -25,10 +25,10 @@ export const ShowEpisode = () => {
 
   return (
     <>
-      <p>show episode page</p>
+      <h1>Season {seasonId}, Episode {episodeId}</h1>
       <div>
-        {lines.map((val, _) => (
-          <p>{val.content}</p>
+        {lines.map((val, i) => (
+          <p key={`line${i}`}>{val.content}</p>
         ))}
       </div>
     </>
