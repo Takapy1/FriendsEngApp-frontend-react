@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import axios from 'axios'
 import { Link, useParams } from "react-router-dom";
-import { NUM_EACH_EPISODE } from "../../constans/episodes";
+import { NUM_EACH_EPISODE } from "../../constants/episodes";
 
 export const EpisodeList = () => {
   const seasonId = useParams().id;

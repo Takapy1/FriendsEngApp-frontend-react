@@ -1,5 +1,5 @@
-import React, { Component, useEffect, useState } from "react";
-import { Routes, Route, Link } from 'react-router-dom'
+import React from "react";
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const StyledHeader = styled.header`
@@ -8,10 +8,11 @@ const StyledHeader = styled.header`
   height: 30px;
   padding: 30px 4% 10px;
   background-color: rgb(82, 78, 78);
+  margin-bottom: 20px;
 
   /* 画面上部に固定 */
-  position: fixed;
-  top: 0;
+  /* position: fixed; 
+  top: 0; */
 
   display: flex;
   align-items: center;
