@@ -7,7 +7,7 @@ const SeasonUl = styled.ul`
   margin: 0;
 `
 
-export const SeasonList = () => { 
+export const SeasonList = () => {
   
   return (
     <>
