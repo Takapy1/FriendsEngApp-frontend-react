@@ -11,13 +11,12 @@ const Line = styled.div`
   margin: 3px;
 `
 
-
-
 export const ShowEpisode = () => { 
   const seasonId = useParams().seasonId;
   const episodeId = useParams().id;
-  const [activeLineNO, setActiveLineNO] = useState(null);
   const [lines, setLines] = useState([]);
+  const [activeLineNO, setActiveLineNO] = useState(null);
+  const [activeWord, setActiveWord] = useState(null);
 
   useEffect( async() => {
     await axios.get(process.env.REACT_APP_SERVER_URL + `/api/v1/seasons/${seasonId}/episodes/${episodeId}`)
@@ -33,12 +32,15 @@ export const ShowEpisode = () => {
     setActiveLineNO(num);
   }
 
+  const handleActiveWord = (word) => {
+    setActiveWord(word);
+  }
+
   const getLine = (v, i) => {
     if (activeLineNO === i) {
-      // return <ActiveLine key={`line${i}`} onClick={() => handleClickLine(i)}>{v.content}</ActiveLine>;
-      return <ActiveLine LineNO={i} line={v.content} onLineClick={() => handleClickLine(i)} />
+      return <ActiveLine LineNO={v.id} line={v.content} onLineClick={() => handleClickLine(i)} handleActiveWord={(word) => handleActiveWord(word)} />
     } else {
-      return <Line key={`line${i}`} onClick={() => handleClickLine(i)}>{v.content}</Line>;
+      return <Line key={`line${v.id}`} onClick={() => handleClickLine(i)}>{v.content}</Line>;
     }
   }
 
@@ -47,10 +49,9 @@ export const ShowEpisode = () => {
       <h1>Season {seasonId}, Episode {episodeId}</h1>
       <Wrapper>
         <Main>
-          { console.log("showのrender") }
           { lines.map((val, i) => getLine(val, i)) }
         </Main>
-        <SideBar />
+        <SideBar activeWord={activeWord} />
       </Wrapper>
     </>
   )

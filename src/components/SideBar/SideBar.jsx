@@ -15,15 +15,14 @@ const FormGroup = styled.div`
   
 `
 
-
-export const SideBar = () => {
+export const SideBar = ({activeWord}) => {
 
   return (
     <SideBarField>
       <form>
         <FormGroup>
           <label>単語</label><br></br>
-          <input type="text"></input>
+          <input type="text" value={activeWord}></input>
         </FormGroup>
         <br></br>
         <FormGroup>
