@@ -56,10 +56,6 @@ export const SideBar = ({activeLineID, activeWord, activeWordIndex, meaningList,
 
   useEffect(() => {
     setWord( {...word, content: activeWord, indexOfLine: activeWordIndex} )
-
-    // getWord(activeLineID, activeWordIndex);
-    //ActiveWordに紐づく意味とかを持っていくる。
-    // getMeanings()
   }, [activeWord, activeWordIndex]);
 
   return (
