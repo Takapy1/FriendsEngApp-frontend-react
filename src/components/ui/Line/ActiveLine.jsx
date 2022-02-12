@@ -1,5 +1,4 @@
-import React, { Component, useLayoutEffect, useState } from "react";
-// import ReactDOMServer from 'react-dom/server';
+import React from "react";
 import styled from 'styled-components'
 
 const Line = styled.div`
@@ -7,20 +6,12 @@ const Line = styled.div`
   margin: 3px;
   background-color: #7FFFD4;
 `
-const NormalWord = styled.span`
-
-`
-const ActiveWord = styled.span`
-  background-color: #DC143C;
-`
 
 export const ActiveLine = ({lineID, line, onLineClick, handleActiveWord, handleMeaningList}) => {
-  const [activeWordNO, setActiveWordNO] = useState(null);
 
   const splitLine = (line) => {
     return line.replaceAll("　", " ").split(" ")
   }
-
   // 各単語をspanで囲む
   const changeWordsToWordSpans = (words) => {
     let wordSpans = []

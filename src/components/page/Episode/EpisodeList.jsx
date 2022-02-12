@@ -1,7 +1,6 @@
-import React, { Component, useEffect, useState } from "react";
-import axios from 'axios'
+import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { NUM_EACH_EPISODE } from "../../constants/episodes";
+import { NUM_EACH_EPISODE } from "../../../constants/episodes";
 
 export const EpisodeList = () => {
   const seasonId = useParams().id;
@@ -9,7 +8,7 @@ export const EpisodeList = () => {
 
   return (
     <>
-      <h1>Season {seasonId}, Episode一覧</h1>
+      <h1>Season {seasonId}, Episode 一覧</h1>
       <div>
         {links.map(val => {
           return(

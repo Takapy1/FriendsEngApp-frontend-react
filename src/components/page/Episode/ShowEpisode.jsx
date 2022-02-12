@@ -1,10 +1,11 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import styled from 'styled-components'
-import { SideBar } from "../SideBar/SideBar";
-import { ActiveLine } from "../Lines/ActiveLine";
-import { Main, Wrapper } from "../Styled/StyledComponents";
+import { useParams } from "react-router-dom";
+import { SideBar } from "../../ui/SideBar/SideBar";
+import { ActiveLine } from "../../ui/Line/ActiveLine";
+import { Main, Wrapper } from "../../Styled/Episode/StyledShowEpisode";
 
 const Line = styled.div`
   border: solid black;
@@ -73,6 +74,7 @@ export const ShowEpisode = () => {
   return (
     <>
       <h1>Season {seasonId}, Episode {episodeId}</h1>
+      <Link to={`/seasons/${seasonId}/episodes`}>Episode一覧に戻る</Link>
       <Wrapper>
         <Main>
           { lines.map(val => getLine(val)) }

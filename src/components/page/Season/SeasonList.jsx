@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -8,12 +8,12 @@ const SeasonUl = styled.ul`
 `
 
 export const SeasonList = () => {
-  
+
   return (
     <>
       <div>
-        <p>season list page</p>
-        
+        <h1>Season 一覧</h1>
+
         <SeasonUl>
           <li><Link to={'/seasons/1/episodes'}>Season 1</Link></li>
           <li><Link to={'/seasons/2/episodes'}>Season 2</Link></li>

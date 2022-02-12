@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { Button } from "../Styled/StyledComponents";
+import { Button } from "../Button/Button";
 
 const SideBarField = styled.div`
   position: sticky;
@@ -13,7 +12,6 @@ const SideBarField = styled.div`
 `
 
 const FormGroup = styled.div`
-  
 `
 
 export const SideBar = ({activeLineID, activeWord, activeWordIndex, meaningList, addNewMeaning}) => {

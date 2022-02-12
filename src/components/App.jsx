@@ -1,20 +1,16 @@
 import React from "react";
-import { Routes, Route, Link } from 'react-router-dom'
-import { Home } from "./homes/Home";
-import { SeasonList } from "./seasons/SeasonList";
-import { ShowEpisode } from "./episodes/ShowEpisode";
-import { EpisodeList } from "./episodes/EpisodeList";
-import { Header } from './Header/Header'
-// import "../App.css";
-
-
+import { Routes, Route } from 'react-router-dom'
+import { Home } from "./page/Home/Home";
+import { SeasonList } from "./page/Season/SeasonList";
+import { ShowEpisode } from "./page/Episode/ShowEpisode";
+import { EpisodeList } from "./page/Episode/EpisodeList";
+import { Header } from './ui/Header/Header'
 
 export const App = () => {
 
   return (
     <>
       <Header />
-      
       
       <Routes>
         <Route path="/" element={<Home/> } />
