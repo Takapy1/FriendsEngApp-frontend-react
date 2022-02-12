@@ -15,8 +15,10 @@ export const ShowEpisode = () => {
   const seasonId = useParams().seasonId;
   const episodeId = useParams().id;
   const [lines, setLines] = useState([]);
-  const [activeLineNO, setActiveLineNO] = useState(null);
+  const [activeLineID, setActiveLineID] = useState(null);
   const [activeWord, setActiveWord] = useState(null);
+  const [activeWordIndex, setActiveWordIndex] = useState(null);
+  const [meaningList, setMeaningList] = useState([]);
 
   useEffect( async() => {
     await axios.get(process.env.REACT_APP_SERVER_URL + `/api/v1/seasons/${seasonId}/episodes/${episodeId}`)
@@ -28,20 +30,44 @@ export const ShowEpisode = () => {
     })
   }, []);
 
-  const handleClickLine = (num) => {
-    setActiveLineNO(num);
+  const handleClickLine = (id) => {
+    setActiveLineID(id);
   }
 
-  const handleActiveWord = (word) => {
+  const handleActiveWord = (word, index) => {
     setActiveWord(word);
+    setActiveWordIndex(index);
+    console.log(index);
   }
 
-  const getLine = (v, i) => {
-    if (activeLineNO === i) {
-      return <ActiveLine LineNO={v.id} line={v.content} onLineClick={() => handleClickLine(i)} handleActiveWord={(word) => handleActiveWord(word)} />
+  const handleMeaningList = async(index) => {
+    console.log(activeWordIndex);
+    await axios.get(process.env.REACT_APP_SERVER_URL + `/api/v1/lines/${activeLineID}/words/${index}`)
+    .then(res => {
+      console.log(res.data);
+      setMeaningList(res.data);
+    })
+    .catch(e => {
+      console.log(e);
+      setMeaningList([]);
+    })
+  }
+
+  const getLine = (v) => {
+    if (activeLineID === v.id) {
+      return <ActiveLine 
+                  lineID={v.id} 
+                  line={v.content} 
+                  onLineClick={(id) => handleClickLine(id)} 
+                  handleActiveWord={(word, i) => handleActiveWord(word, i)}
+                  handleMeaningList={(num) => handleMeaningList(num) } />
     } else {
-      return <Line key={`line${v.id}`} onClick={() => handleClickLine(i)}>{v.content}</Line>;
+      return <Line key={`line${v.id}`} id={`line${v.id}`} onClick={() => handleClickLine(v.id)}>{v.content}</Line>;
     }
+  }
+
+  const addNewMeaning = (meaning) => {
+    setMeaningList(meaning);
   }
 
   return (
@@ -49,9 +75,14 @@ export const ShowEpisode = () => {
       <h1>Season {seasonId}, Episode {episodeId}</h1>
       <Wrapper>
         <Main>
-          { lines.map((val, i) => getLine(val, i)) }
+          { lines.map(val => getLine(val)) }
         </Main>
-        <SideBar activeWord={activeWord} />
+        <SideBar 
+            activeLineID={activeLineID} 
+            activeWord={activeWord} 
+            activeWordIndex={activeWordIndex} 
+            meaningList={meaningList}
+            addNewMeaning={(m) => addNewMeaning(m)} />
       </Wrapper>
     </>
   )

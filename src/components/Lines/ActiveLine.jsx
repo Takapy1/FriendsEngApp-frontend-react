@@ -14,7 +14,7 @@ const ActiveWord = styled.span`
   background-color: #DC143C;
 `
 
-export const ActiveLine = ({lineID, line, onLineClick, handleActiveWord}) => {
+export const ActiveLine = ({lineID, line, onLineClick, handleActiveWord, handleMeaningList}) => {
   const [activeWordNO, setActiveWordNO] = useState(null);
 
   const splitLine = (line) => {
@@ -35,17 +35,16 @@ export const ActiveLine = ({lineID, line, onLineClick, handleActiveWord}) => {
   }
 
   const handleClickWord = (num) => {
-    console.log(wordList[num]);
-    handleActiveWord(wordList[num]);
+    handleActiveWord(wordList[num], num);
+    handleMeaningList(num);
   }
 
   const wordList = splitLine(line);
-  const numWords = wordList.length;
   const wordSpans = changeWordsToWordSpans(wordList);
 
   return (
     <>
-      <Line key={`line${lineID}`} onClick={() => onLineClick(lineID)}>
+      <Line key={`line${lineID}`} id={`line${lineID}`} onClick={() => onLineClick(lineID)}>
         { wordSpans.map((_ws, i) =>  getWordSpan(i) ) }
       </Line>
     </>
