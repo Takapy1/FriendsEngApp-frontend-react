@@ -5,9 +5,8 @@ export const Home = () => {
 
   return (
     <>
-      <p>ようこそ「Frineds」へ</p>
+      <h1>ようこそ「Frineds」へ</h1>
       <Link to="/seasons">シーズン一覧へ</Link>
     </>
-   
   )
 }

@@ -1,11 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-
-const SeasonUl = styled.ul`
-  list-style: none;
-  margin: 0;
-`
+import { SeasonUl} from '../../Styled/Season/StyledSeasonList'
 
 export const SeasonList = () => {
 

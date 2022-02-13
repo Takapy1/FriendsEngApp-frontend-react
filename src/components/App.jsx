@@ -7,7 +7,6 @@ import { EpisodeList } from "./page/Episode/EpisodeList";
 import { Header } from './ui/Header/Header'
 
 export const App = () => {
-
   return (
     <>
       <Header />

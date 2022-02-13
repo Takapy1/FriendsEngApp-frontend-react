@@ -38,11 +38,10 @@ export const ShowEpisode = () => {
   const handleActiveWord = (word, index) => {
     setActiveWord(word);
     setActiveWordIndex(index);
-    console.log(index);
+    // console.log(index);
   }
 
   const handleMeaningList = async(index) => {
-    console.log(activeWordIndex);
     await axios.get(process.env.REACT_APP_SERVER_URL + `/api/v1/lines/${activeLineID}/words/${index}`)
     .then(res => {
       console.log(res.data);
