@@ -40,7 +40,6 @@ export const ActiveLine = ({lineID, line, onLineClick, handleActiveWord, handleM
   const splitLine = (line) => {
     return line.replaceAll("　", " ").split(" ")
   }
-
   
   const makeWordSpans = (words) => {
     const wordSpanList = {};

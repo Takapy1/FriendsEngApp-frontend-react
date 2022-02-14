@@ -11,7 +11,7 @@ const StyledHeader = styled.header`
   margin-bottom: 20px;
 
   /* 画面上部に固定 */
-  /* position: fixed; 
+  /* position: fixed;
   top: 0; */
 
   display: flex;
@@ -31,6 +31,12 @@ const NavLinks = styled.ul`
 const NavLink = styled.li`
   margin: 0 0 0 15px;
   font-size: 14px;
+  border: solid white 1px;
+  padding: 0.5em;
+  
+  &:hover {
+    background-color: #000000;
+  }
 `
 
 const StyledLink = styled(Link)`

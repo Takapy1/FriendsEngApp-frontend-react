@@ -8,7 +8,7 @@ const SideBarField = styled.div`
   top: 0; 
   width: 25%;
   height: 300px;
-  background-color: bisque;
+  background-color: #B0E0E6;
 `
 
 const FormGroup = styled.div`
