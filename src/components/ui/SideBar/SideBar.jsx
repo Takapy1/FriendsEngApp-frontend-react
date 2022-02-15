@@ -8,10 +8,19 @@ const SideBarField = styled.div`
   top: 0; 
   width: 25%;
   height: 300px;
-  background-color: #B0E0E6;
+  background-color: #e7efff;
+  text-align: center;
 `
 
 const FormGroup = styled.div`
+`
+
+const wordLabel = styled.label`
+  font-weight: bold;
+`
+
+const WordField = styled.input`
+
 `
 
 export const SideBar = ({activeLineID, activeWord, activeWordIndex, meaningList, addNewMeaning}) => {
@@ -59,7 +68,7 @@ export const SideBar = ({activeLineID, activeWord, activeWordIndex, meaningList,
   return (
     <SideBarField>
       <FormGroup>
-        <label>単語</label><br></br>
+        <wordLabel>単語</wordLabel><br></br>
         <input type="text" value={word.content} name="content" onChange={handleInputChanged}></input>
       </FormGroup>
       <br></br>

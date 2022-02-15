@@ -47,7 +47,7 @@ const StyledLink = styled(Link)`
 export const Header = () => {
   return (
     <StyledHeader>
-      <h1><StyledLink to="/seasons">Friensing!</StyledLink></h1>
+      <h1><StyledLink to="/seasons">FriensEng!</StyledLink></h1>
       <Nav className="header-nav">
         <NavLinks>
           <NavLink><StyledLink to="/seasons">Season一覧</StyledLink></NavLink>

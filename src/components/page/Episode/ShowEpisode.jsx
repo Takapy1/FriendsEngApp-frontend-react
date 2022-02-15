@@ -15,10 +15,13 @@ const Line = styled.div`
 export const ShowEpisode = () => { 
   const seasonId = useParams().seasonId;
   const episodeId = useParams().id;
-  const [lines, setLines] = useState([]);
   const [activeLineID, setActiveLineID] = useState(null);
-  const [activeWord, setActiveWord] = useState(null);
   const [activeWordIndex, setActiveWordIndex] = useState(null);
+  const [lines, setLines] = useState([]);
+
+  
+  const [activeWord, setActiveWord] = useState(null);
+
   const [meaningList, setMeaningList] = useState([]);
 
   useEffect( async() => {
@@ -56,8 +59,8 @@ export const ShowEpisode = () => {
   const getLine = (v) => {
     if (activeLineID === v.id) {
       return <ActiveLine 
-                  lineID={v.id} 
-                  line={v.content} 
+                  lineID={v.id}
+                  line={v.content}
                   onLineClick={(id) => handleClickLine(id)} 
                   handleActiveWord={(word, i) => handleActiveWord(word, i)}
                   handleMeaningList={(num) => handleMeaningList(num) } />
