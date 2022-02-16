@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import styled from 'styled-components'
 
-const Line = styled.div`
+const LineDiv = styled.div`
   border: solid black;
-  margin: 8px 0;
-  background-color: #7FFFD4;
+  margin: 3px;
+
+  &[data-isActive='true'] {
+    margin: 8px 0;
+    background-color: #7FFFD4;
+  }
 `
 
 const WordSpan = styled.span`
@@ -36,7 +40,7 @@ const ActiveWordSpan = styled.span`
   color: white;
 `
 
-export const ActiveLine = ({lineID, line, onLineClick, handleActiveWord, handleMeaningList}) => {
+export const Line = ({lineID, line, isActive, onLineClick, handleActiveWord}) => {
   const splitLine = (line) => {
     return line.replaceAll("　", " ").split(" ")
   }
@@ -52,43 +56,21 @@ export const ActiveLine = ({lineID, line, onLineClick, handleActiveWord, handleM
   const wordList = splitLine(line);
   const [wordSpans, setWordSpans] = useState(makeWordSpans(wordList));
 
-  // const changeWordsToWordSpans = (words) => {
-  //   for (let i = 0; i < words.length; i++) {
-  //       // wordSpans.push(<span key={`word${i}`} onClick={ () => handleClickWord(i) }>{words[i]} </span>)
-  //       setWordSpans({ ...wordSpans, i: <span key={`word${i}`} onClick={ () => handleClickWord(i) }>{words[i]} </span>})
-  //     }
-  //   // let wordSpans = []
-  //   // for (let i = 0; i < words.length; i++) {
-  //   //   wordSpans.push(<span key={`word${i}`} onClick={ () => handleClickWord(i) }>{words[i]} </span>)
-  //   // }
-  //   // return wordSpans;
-  // }
-
   const handleClickWord = (num) => {
-    // setActiveWord(wordList[num]);
-    // setactiveWordIndex(num);
     handleActiveWord(wordList[num], num);
-    handleMeaningList(num);
+    // handleMeaningList(num);
     setWordSpans({...wordSpans, [num]: <ActiveWordSpan key={`word${num}`} onClick={ () => handleClickWord(num) }>{wordList[num] }</ActiveWordSpan>})
   }
   
   const getWordSpan = (i) => {
     return wordSpans[i];
   }
-  // const [activeWord, setActiveWord] = useState(null);
-  // const [activeWordIndex, setactiveWordIndex] = useState(null);
-
-  // useLayoutEffect( () => {
-  //   changeWordsToWordSpans(wordList);
-  // }, [activeWord, activeWordIndex])
-  
 
   return (
     <>
-      <Line key={`line${lineID}`} id={`line${lineID}`} onClick={() => onLineClick(lineID)}>
-        { console.log(wordSpans) }
-        { Object.keys(wordSpans).map((_ws, i) =>  getWordSpan(i) ) }
-      </Line>
+      <LineDiv data-isActive={isActive} key={`line${lineID}`} id={`line${lineID}`} onClick={() => onLineClick(lineID)}>
+        { isActive ? Object.keys(wordSpans).map((_ws, i) =>  getWordSpan(i) ) : line }
+      </LineDiv>
     </>
   )
 
