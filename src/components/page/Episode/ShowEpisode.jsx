@@ -14,7 +14,6 @@ export const ShowEpisode = () => {
   const [activeLineID, setActiveLineID] = useState(null);
   const [activeWordIndex, setActiveWordIndex] = useState(null);
   const [lines, setLines] = useState([]);
-  const [activeWord, setActiveWord] = useState(null);
 
   
   const [meaningList, setMeaningList] = useState([]);
@@ -32,22 +31,22 @@ export const ShowEpisode = () => {
   const handleClickLine = (id) => {
     setActiveLineID(id);
   }
-  const handleActiveWord = (word, index) => {
-    setActiveWord(word);
+
+  const handleActiveWordIndex = (index) => {
     setActiveWordIndex(index);
   }
 
-  // const handleMeaningList = async(index) => {
-  //   await axios.get(process.env.REACT_APP_SERVER_URL + `/api/v1/lines/${activeLineID}/words/${index}`)
-  //   .then(res => {
-  //     console.log(res.data);
-  //     setMeaningList(res.data);
-  //   })
-  //   .catch(e => {
-  //     console.log(e);
-  //     setMeaningList([]);
-  //   })
-  // }
+  const handleMeaningList = async(index) => {
+    await axios.get(process.env.REACT_APP_SERVER_URL + `/api/v1/lines/${activeLineID}/words/${index}`)
+    .then(res => {
+      console.log(res.data);
+      setMeaningList(res.data);
+    })
+    .catch(e => {
+      console.log(e);
+      setMeaningList([]);
+    })
+  }
 
   const addNewMeaning = (meaning) => {
     setMeaningList(meaning);
@@ -59,20 +58,21 @@ export const ShowEpisode = () => {
       <Link to={`/seasons/${seasonId}/episodes`}>Episode一覧に戻る</Link>
       <Wrapper>
         <Main>
-          {/* { lines.map(val => getLine(val)) } */}
           { lines.map(line => 
             <Line
               lineID={line.id}
               line={line.content}
               isActive={activeLineID === line.id}
+              activeWordIndex={activeWordIndex}
               onLineClick={(id) => handleClickLine(id)}
-              handleActiveWord={(word, i) => handleActiveWord(word, i)}
+              handleActiveWordIndex={(i) => handleActiveWordIndex(i)}
+              handleMeaningList={(num) => handleMeaningList(num)}
             />
           )}
         </Main>
-        <SideBar 
+        <SideBar
             activeLineID={activeLineID} 
-            activeWord={activeWord} 
+            // activeWord={activeWord} 
             activeWordIndex={activeWordIndex} 
             meaningList={meaningList}
             addNewMeaning={(m) => addNewMeaning(m)} />

@@ -40,15 +40,17 @@ const ActiveWordSpan = styled.span`
   color: white;
 `
 
-export const Line = ({lineID, line, isActive, onLineClick, handleActiveWord}) => {
+export const Line = ({lineID, line, isActive, onLineClick, handleActiveWordIndex, handleMeaningList}) => {
   const splitLine = (line) => {
-    return line.replaceAll("　", " ").split(" ")
+    const lineList = line.replaceAll("　", " ").split(" ");
+    if (lineList[lineList.length-1] === '') lineList.pop();
+    return lineList;
   }
   
   const makeWordSpans = (words) => {
     const wordSpanList = {};
     for (let i = 0; i < words.length; i++) {
-      wordSpanList[i] = <WordSpan key={`word${i}`} onClick={ () => handleClickWord(i) }>{words[i]} </WordSpan>
+      wordSpanList[i] = <WordSpan key={`word${i}`} id={`word${i}`} onClick={ () => handleClickWord(i) }>{words[i]} </WordSpan>
     }
     return wordSpanList
   }
@@ -57,9 +59,9 @@ export const Line = ({lineID, line, isActive, onLineClick, handleActiveWord}) =>
   const [wordSpans, setWordSpans] = useState(makeWordSpans(wordList));
 
   const handleClickWord = (num) => {
-    handleActiveWord(wordList[num], num);
-    // handleMeaningList(num);
-    setWordSpans({...wordSpans, [num]: <ActiveWordSpan key={`word${num}`} onClick={ () => handleClickWord(num) }>{wordList[num] }</ActiveWordSpan>})
+    handleActiveWordIndex(num);
+    handleMeaningList(num);
+    setWordSpans({...wordSpans, [num]: <ActiveWordSpan key={`word${num}`} id={`word${num}`} onClick={ () => handleClickWord(num) }>{wordList[num] }</ActiveWordSpan>})
   }
   
   const getWordSpan = (i) => {

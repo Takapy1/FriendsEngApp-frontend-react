@@ -23,7 +23,7 @@ const WordField = styled.input`
 
 `
 
-export const SideBar = ({activeLineID, activeWord, activeWordIndex, meaningList, addNewMeaning}) => {
+export const SideBar = ({activeLineID, activeWordIndex, meaningList, addNewMeaning}) => {
 
   const initialWordState = {
     lineID: null,
@@ -61,9 +61,16 @@ export const SideBar = ({activeLineID, activeWord, activeWordIndex, meaningList,
     })
   };
 
+  const getActiveWord = () => {
+    if (activeLineID != null && activeWordIndex != null) {
+      const activeWord = document.getElementById(`line${activeLineID}`).querySelector(`#word${activeWordIndex}`);
+      return activeWord === null ? null : activeWord.textContent;
+    }
+  }
+
   useEffect(() => {
-    setWord( {...word, content: activeWord, indexOfLine: activeWordIndex} )
-  }, [activeWord, activeWordIndex]);
+    setWord( {...word, content: getActiveWord(), indexOfLine: activeWordIndex} )
+  }, [activeLineID, activeWordIndex]);
 
   return (
     <SideBarField>
