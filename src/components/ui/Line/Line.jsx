@@ -52,9 +52,9 @@ export const Line = ({lineID, line, isActive, onLineClick, handleActiveWordIndex
     for (let i = 0; i < words.length; i++) {
       wordSpanList[i] = <WordSpan key={`word${i}`} id={`word${i}`} onClick={ () => handleClickWord(i) }>{words[i]} </WordSpan>
     }
-    return wordSpanList
+    return wordSpanList;
   }
-  
+
   const wordList = splitLine(line);
   const [wordSpans, setWordSpans] = useState(makeWordSpans(wordList));
 
@@ -62,6 +62,7 @@ export const Line = ({lineID, line, isActive, onLineClick, handleActiveWordIndex
     handleActiveWordIndex(num);
     handleMeaningList(num);
     setWordSpans({...wordSpans, [num]: <ActiveWordSpan key={`word${num}`} id={`word${num}`} onClick={ () => handleClickWord(num) }>{wordList[num] }</ActiveWordSpan>})
+    console.log(wordSpans);
   }
   
   const getWordSpan = (i) => {

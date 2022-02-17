@@ -15,7 +15,6 @@ export const ShowEpisode = () => {
   const [activeWordIndex, setActiveWordIndex] = useState(null);
   const [lines, setLines] = useState([]);
 
-  
   const [meaningList, setMeaningList] = useState([]);
 
   useEffect( async() => {
@@ -29,6 +28,7 @@ export const ShowEpisode = () => {
   }, []);
 
   const handleClickLine = (id) => {
+    // setActiveWordIndex(null);
     setActiveLineID(id);
   }
 

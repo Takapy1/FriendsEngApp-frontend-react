@@ -15,19 +15,25 @@ const SideBarField = styled.div`
 const FormGroup = styled.div`
 `
 
-const wordLabel = styled.label`
+const WordLabel = styled.label`
   font-weight: bold;
 `
 
 const WordField = styled.input`
+  font-size: 100%;
+`
 
+const MeaningLabel = styled.label`
+  font-weight: bold;
+`
+
+const MeaningField = styled.input`
+  font-size: 100%;
 `
 
 export const SideBar = ({activeLineID, activeWordIndex, meaningList, addNewMeaning}) => {
 
   const initialWordState = {
-    lineID: null,
-    indexOfLine: null,
     content: "",
     meaning: "",
   };
@@ -52,7 +58,7 @@ export const SideBar = ({activeLineID, activeWordIndex, meaningList, addNewMeani
 
     axios.post(process.env.REACT_APP_SERVER_URL + '/api/v1/words', data)
     .then(res => {
-      console.log(res);
+      // console.log(res);
       addNewMeaning(res.data);
       resetMeaingField();
     })
@@ -75,13 +81,13 @@ export const SideBar = ({activeLineID, activeWordIndex, meaningList, addNewMeani
   return (
     <SideBarField>
       <FormGroup>
-        <wordLabel>単語</wordLabel><br></br>
-        <input type="text" value={word.content} name="content" onChange={handleInputChanged}></input>
+        <WordLabel>単語</WordLabel><br></br>
+        <WordField type="text" value={word.content} name="content" onChange={handleInputChanged}></WordField>
       </FormGroup>
       <br></br>
       <FormGroup>
-        <label>意味</label><br></br>
-        <input type="text" value={word.meaning} name="meaning" onChange={handleInputChanged}></input>
+        <MeaningLabel>意味</MeaningLabel><br></br>
+        <MeaningField type="text" value={word.meaning} name="meaning" onChange={handleInputChanged}></MeaningField>
       </FormGroup>
       <br></br>
       <Button onClick={saveWord}>登録</Button>
