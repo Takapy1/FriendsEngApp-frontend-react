@@ -76,6 +76,5 @@ export const Line = ({lineID, line, isActive, onLineClick, handleActiveWordIndex
       </LineDiv>
     </>
   )
-
 }
 
