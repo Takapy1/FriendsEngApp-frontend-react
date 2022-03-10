@@ -32,8 +32,8 @@ const EpisodeLink = styled(Link)`
 `
 
 
-export const EpisodeList = () => {
-  const seasonId = useParams().id;
+export const EpisodeList: React.FC = () => {
+  const seasonId: string = useParams().id;
   const links = [...Array(NUM_EACH_EPISODE[seasonId]).keys()].map(i => ++i)
 
   return (

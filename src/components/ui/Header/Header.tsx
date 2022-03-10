@@ -44,7 +44,7 @@ const StyledLink = styled(Link)`
   color: white;
 `
 
-export const Header = () => {
+export const Header: React.FC = () => {
   return (
     <StyledHeader>
       <h1><StyledLink to="/seasons">FriensEng!</StyledLink></h1>
